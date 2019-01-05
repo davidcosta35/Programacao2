@@ -148,7 +148,7 @@ public class LoginCliente extends javax.swing.JFrame implements Runnable {
 
    private void jMenuItemVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemVoltarActionPerformed
       this.cliente = (Cliente) Ficheiro.getRepo().getClientes().get(this.cliente.getNickname());
-      this.trocaPainel(new MenuDono(this.cliente, this));
+      this.trocaPainel(new MenuCliente(this.cliente, this));
    }//GEN-LAST:event_jMenuItemVoltarActionPerformed
 
    public void trocaPainel(JPanel painel) {

@@ -1,21 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GUI;
 
-/**
- *
- * @author claud
- */
+import Classes.Cliente;
+
 public class MenuCliente extends javax.swing.JPanel {
 
-   /**
-    * Creates new form MenuCliente
-    */
-   public MenuCliente() {
+   private Cliente cliente;
+   private LoginCliente parentFrame;
+
+   public MenuCliente(Cliente cliente, LoginCliente parentFrame) {
       initComponents();
+      this.cliente = cliente;
+      this.parentFrame = parentFrame;
+      this.jCliente.setText(this.cliente.getNickname());
    }
 
    /**
@@ -27,19 +23,90 @@ public class MenuCliente extends javax.swing.JPanel {
    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
    private void initComponents() {
 
-      javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-      this.setLayout(layout);
-      layout.setHorizontalGroup(
-         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGap(0, 800, Short.MAX_VALUE)
-      );
-      layout.setVerticalGroup(
-         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGap(0, 600, Short.MAX_VALUE)
-      );
+      jPontosCliente = new javax.swing.JLabel();
+      jLabel1 = new javax.swing.JLabel();
+      jCliente = new javax.swing.JLabel();
+      BtnListRecintos = new javax.swing.JButton();
+      BtnPesquisarRecinto = new javax.swing.JButton();
+      jLabel3 = new javax.swing.JLabel();
+      jLabel6 = new javax.swing.JLabel();
+      jLabel4 = new javax.swing.JLabel();
+
+      setLayout(null);
+
+      jPontosCliente.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+      jPontosCliente.setForeground(new java.awt.Color(0, 0, 0));
+      jPontosCliente.setText("1000");
+      add(jPontosCliente);
+      jPontosCliente.setBounds(265, 340, 70, 43);
+
+      jLabel1.setFont(new java.awt.Font("Arial", 1, 22)); // NOI18N
+      jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+      jLabel1.setText("O que deseja fazer?");
+      add(jLabel1);
+      jLabel1.setBounds(300, 430, 203, 26);
+
+      jCliente.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+      jCliente.setForeground(new java.awt.Color(0, 0, 0));
+      jCliente.setText("cliente");
+      add(jCliente);
+      jCliente.setBounds(440, 240, 130, 43);
+
+      BtnListRecintos.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+      BtnListRecintos.setText("Consultar Reservas");
+      BtnListRecintos.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            BtnListRecintosActionPerformed(evt);
+         }
+      });
+      add(BtnListRecintos);
+      BtnListRecintos.setBounds(400, 470, 200, 35);
+
+      BtnPesquisarRecinto.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+      BtnPesquisarRecinto.setText("Pesquisar Recinto");
+      BtnPesquisarRecinto.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            BtnPesquisarRecintoActionPerformed(evt);
+         }
+      });
+      add(BtnPesquisarRecinto);
+      BtnPesquisarRecinto.setBounds(190, 470, 200, 35);
+
+      jLabel3.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+      jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+      jLabel3.setText("Bem vindo");
+      add(jLabel3);
+      jLabel3.setBounds(250, 240, 190, 43);
+
+      jLabel6.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+      jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+      jLabel6.setText("Possui");
+      add(jLabel6);
+      jLabel6.setBounds(180, 340, 80, 43);
+
+      jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/campo-desportivo.png"))); // NOI18N
+      jLabel4.setToolTipText("");
+      add(jLabel4);
+      jLabel4.setBounds(0, 0, 800, 600);
    }// </editor-fold>//GEN-END:initComponents
+
+   private void BtnPesquisarRecintoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPesquisarRecintoActionPerformed
+
+   }//GEN-LAST:event_BtnPesquisarRecintoActionPerformed
+
+   private void BtnListRecintosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnListRecintosActionPerformed
+
+   }//GEN-LAST:event_BtnListRecintosActionPerformed
 
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
+   private javax.swing.JButton BtnListRecintos;
+   private javax.swing.JButton BtnPesquisarRecinto;
+   private javax.swing.JLabel jCliente;
+   private javax.swing.JLabel jLabel1;
+   private javax.swing.JLabel jLabel3;
+   private javax.swing.JLabel jLabel4;
+   private javax.swing.JLabel jLabel6;
+   private javax.swing.JLabel jPontosCliente;
    // End of variables declaration//GEN-END:variables
 }
