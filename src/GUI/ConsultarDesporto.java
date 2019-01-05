@@ -1,5 +1,10 @@
 package GUI;
 
+import Classes.Desporto;
+import Classes.Ficheiro;
+import java.util.Map;
+import javax.swing.table.DefaultTableModel;
+
 public class ConsultarDesporto extends javax.swing.JPanel {
 
    private LoginAdmin parentFrame;
@@ -9,6 +14,11 @@ public class ConsultarDesporto extends javax.swing.JPanel {
       initComponents();
       this.admin = admin;
       this.parentFrame = parentFrame;
+      DefaultTableModel table = (DefaultTableModel) this.jTable.getModel();
+
+      for (Map.Entry<String, Desporto> mapa : Ficheiro.getRepo().getDesportos().entrySet()) {
+        table.addRow(new Object[]{mapa.getValue().getNome()});  
+      }
    }
 
    @SuppressWarnings("unchecked")
@@ -84,7 +94,7 @@ public class ConsultarDesporto extends javax.swing.JPanel {
     }//GEN-LAST:event_BtnVoltarActionPerformed
 
     private void BtnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAdicionarActionPerformed
-        // TODO add your handling code here:
+        this.parentFrame.trocaPainel(new RegistarDesporto(this.parentFrame, this.admin));
     }//GEN-LAST:event_BtnAdicionarActionPerformed
 
 
