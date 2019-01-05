@@ -1,7 +1,7 @@
 package Classes;
 
 import java.io.Serializable;
-
+//teste
 public class Cliente extends Utilizador implements Serializable {
     
     private int numPontos;
