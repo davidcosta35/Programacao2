@@ -155,7 +155,12 @@ public class MenuInicial extends javax.swing.JFrame {
    }//GEN-LAST:event_BtnDonoRecintoActionPerformed
 
    private void BtnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnClienteActionPerformed
-      // TODO add your handling code here:
+      if (Ficheiro.getRepo().getClientes().size() == 0) {
+         JOptionPane.showMessageDialog(rootPane, "Não existe nenhuma conta criada como cliente.\nCrie primeiro uma conta.", "Erro", JOptionPane.ERROR_MESSAGE);
+      } else {
+         Thread t = new Thread(new LoginCliente());
+         t.start();
+      }
    }//GEN-LAST:event_BtnClienteActionPerformed
 
    private void BtnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAdminActionPerformed

@@ -1,17 +1,18 @@
 package GUI;
 
+import Classes.Cliente;
 import Classes.Dono;
 import Classes.Ficheiro;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class LoginDono extends javax.swing.JFrame implements Runnable {
+public class LoginCliente extends javax.swing.JFrame implements Runnable {
 
    private JPanel painelVisivel;
-   private Dono dono;
-
-   public LoginDono() {
+   private Cliente cliente;
+   
+   public LoginCliente() {
       initComponents();
       setResizable(false);
       setSize(800, 630);
@@ -19,7 +20,7 @@ public class LoginDono extends javax.swing.JFrame implements Runnable {
       this.setLocationRelativeTo(null);
       this.painelVisivel = this.jPanelLogin;
       this.jMenuBar.setVisible(false);
-      this.dono = new Dono();
+      this.cliente = new Cliente();
    }
 
    /**
@@ -33,8 +34,8 @@ public class LoginDono extends javax.swing.JFrame implements Runnable {
 
       jPanelLogin = new javax.swing.JPanel();
       jLabel1 = new javax.swing.JLabel();
-      jUsername = new javax.swing.JTextField();
       jLabel2 = new javax.swing.JLabel();
+      jUsername = new javax.swing.JTextField();
       jPassword = new javax.swing.JPasswordField();
       BtnLogin = new javax.swing.JButton();
       jLabel4 = new javax.swing.JLabel();
@@ -42,13 +43,10 @@ public class LoginDono extends javax.swing.JFrame implements Runnable {
       jMenu1 = new javax.swing.JMenu();
       jMenuItemVoltar = new javax.swing.JMenuItem();
       jMenu2 = new javax.swing.JMenu();
-      jMenuItemAdicionarRecinto = new javax.swing.JMenuItem();
-      jMenuItemConsultarRecintos = new javax.swing.JMenuItem();
 
       setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-      setTitle("Sportshut - Gestão de Reservas em Campos Desportivos - Dono");
+      setTitle("Sportshut - Gestão de Reservas em Campos Desportivos - Cliente");
 
-      jPanelLogin.setPreferredSize(new java.awt.Dimension(0, 0));
       jPanelLogin.setLayout(null);
 
       jLabel1.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
@@ -57,15 +55,15 @@ public class LoginDono extends javax.swing.JFrame implements Runnable {
       jPanelLogin.add(jLabel1);
       jLabel1.setBounds(245, 300, 110, 24);
 
-      jUsername.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-      jPanelLogin.add(jUsername);
-      jUsername.setBounds(360, 300, 200, 30);
-
       jLabel2.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
       jLabel2.setForeground(new java.awt.Color(0, 0, 0));
       jLabel2.setText("Password:");
       jPanelLogin.add(jLabel2);
       jLabel2.setBounds(245, 350, 100, 24);
+
+      jUsername.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+      jPanelLogin.add(jUsername);
+      jUsername.setBounds(360, 300, 200, 30);
 
       jPassword.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
       jPassword.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -78,7 +76,6 @@ public class LoginDono extends javax.swing.JFrame implements Runnable {
 
       BtnLogin.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
       BtnLogin.setText("Login");
-      BtnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
       BtnLogin.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
             BtnLoginActionPerformed(evt);
@@ -91,8 +88,6 @@ public class LoginDono extends javax.swing.JFrame implements Runnable {
       jLabel4.setToolTipText("");
       jPanelLogin.add(jLabel4);
       jLabel4.setBounds(0, 0, 800, 600);
-
-      jMenuBar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
       jMenu1.setText("Menu Inicial");
 
@@ -107,23 +102,6 @@ public class LoginDono extends javax.swing.JFrame implements Runnable {
       jMenuBar.add(jMenu1);
 
       jMenu2.setText("Opções");
-
-      jMenuItemAdicionarRecinto.setText("Adicionar Recinto");
-      jMenuItemAdicionarRecinto.addActionListener(new java.awt.event.ActionListener() {
-         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jMenuItemAdicionarRecintoActionPerformed(evt);
-         }
-      });
-      jMenu2.add(jMenuItemAdicionarRecinto);
-
-      jMenuItemConsultarRecintos.setText("Consultar Recintos");
-      jMenuItemConsultarRecintos.addActionListener(new java.awt.event.ActionListener() {
-         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jMenuItemConsultarRecintosActionPerformed(evt);
-         }
-      });
-      jMenu2.add(jMenuItemConsultarRecintos);
-
       jMenuBar.add(jMenu2);
 
       setJMenuBar(jMenuBar);
@@ -138,34 +116,22 @@ public class LoginDono extends javax.swing.JFrame implements Runnable {
       );
       layout.setVerticalGroup(
          layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+         .addGroup(layout.createSequentialGroup()
             .addComponent(jPanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 0, Short.MAX_VALUE))
       );
 
       pack();
    }// </editor-fold>//GEN-END:initComponents
 
-   public void trocaPainel(JPanel painel) {
-      this.painelVisivel.setVisible(false);
-      this.painelVisivel = painel;
-      this.setContentPane(this.painelVisivel);
-      this.painelVisivel.setVisible(true);
-   }
-
-   private void jMenuItemVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemVoltarActionPerformed
-      this.dono = (Dono) Ficheiro.getRepo().getDonos().get(this.dono.getNickname());
-      this.trocaPainel(new MenuDono(this.dono, this));
-   }//GEN-LAST:event_jMenuItemVoltarActionPerformed
-
    private void BtnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLoginActionPerformed
-      Dono d = new Dono();
+      Cliente c = new Cliente();
       if (Ficheiro.getRepo().getDonos().containsKey(this.jUsername.getText())) {
-         d = Ficheiro.getRepo().getDonos().get(this.jUsername.getText());
-         if (d.getSenha().equals(new String(this.jPassword.getPassword()))) {
-            this.dono = d;
+         c = Ficheiro.getRepo().getClientes().get(this.jUsername.getText());
+         if (c.getSenha().equals(new String(this.jPassword.getPassword()))) {
+            this.cliente = c;
             JOptionPane.showMessageDialog(null, "Autenticado com sucesso!");
-            this.trocaPainel(new MenuDono(this.dono, this));
+            this.trocaPainel(new MenuCliente(this.cliente, this));
          } else {
             JOptionPane.showMessageDialog(null, "Senha Incorreta!", "Erro", JOptionPane.ERROR_MESSAGE);
          }
@@ -180,19 +146,23 @@ public class LoginDono extends javax.swing.JFrame implements Runnable {
       }
    }//GEN-LAST:event_jPasswordKeyPressed
 
-   private void jMenuItemAdicionarRecintoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAdicionarRecintoActionPerformed
-      // TODO add your handling code here:
-   }//GEN-LAST:event_jMenuItemAdicionarRecintoActionPerformed
+   private void jMenuItemVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemVoltarActionPerformed
+      this.cliente = (Cliente) Ficheiro.getRepo().getClientes().get(this.cliente.getNickname());
+      this.trocaPainel(new MenuDono(this.cliente, this));
+   }//GEN-LAST:event_jMenuItemVoltarActionPerformed
 
-   private void jMenuItemConsultarRecintosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemConsultarRecintosActionPerformed
-      // TODO add your handling code here:
-   }//GEN-LAST:event_jMenuItemConsultarRecintosActionPerformed
-
+   public void trocaPainel(JPanel painel) {
+      this.painelVisivel.setVisible(false);
+      this.painelVisivel = painel;
+      this.setContentPane(this.painelVisivel);
+      this.painelVisivel.setVisible(true);
+   }
+   
    @Override
    public void run() {
       java.awt.EventQueue.invokeLater(new Runnable() {
          public void run() {
-            new LoginDono().setVisible(true);
+            new LoginCliente().setVisible(true);
          }
       });
    }
@@ -206,8 +176,6 @@ public class LoginDono extends javax.swing.JFrame implements Runnable {
    private javax.swing.JMenu jMenu1;
    private javax.swing.JMenu jMenu2;
    private javax.swing.JMenuBar jMenuBar;
-   private javax.swing.JMenuItem jMenuItemAdicionarRecinto;
-   private javax.swing.JMenuItem jMenuItemConsultarRecintos;
    private javax.swing.JMenuItem jMenuItemVoltar;
    private javax.swing.JPanel jPanelLogin;
    private javax.swing.JPasswordField jPassword;
