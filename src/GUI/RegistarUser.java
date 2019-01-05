@@ -296,10 +296,10 @@ public class RegistarUser extends javax.swing.JPanel {
       this.novoUser.setNumTele(Integer.parseInt(this.jNumTele.getText()));
       this.novoUser.setMorada(this.jMorada.getText());
       this.novoUser.setLocalidade(this.jLocalidade.getText());
-      if (this.jDono.isSelected()) {
-         Ficheiro.getRepo().getDonos().put(this.novoUser.getNickname(), (Dono) novoUser);
-      } else {
+      if (this.jCliente.isSelected()) {
          Ficheiro.getRepo().getClientes().put(this.novoUser.getNickname(), (Cliente) novoUser);
+      } else {
+         Ficheiro.getRepo().getDonos().put(this.novoUser.getNickname(), (Dono) novoUser);
       }
       JOptionPane.showMessageDialog(null, "Registo efetuado com sucesso!");
       Ficheiro.serializar("Ficheiro");

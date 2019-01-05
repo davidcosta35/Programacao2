@@ -5,5 +5,4 @@ public enum TipoRecinto {
     campoArLivre,
     recintoCoberto,
     ginasio
-    
 }

@@ -11,7 +11,9 @@ public class MenuCliente extends javax.swing.JPanel {
       initComponents();
       this.cliente = cliente;
       this.parentFrame = parentFrame;
-      this.jCliente.setText(this.cliente.getNickname());
+      this.cliente.setNumPontos(100);
+      this.jCliente.setText("Bem Vindo " + this.cliente.getNickname());
+      this.jPontosCliente.setText("Pontos do Cliente: " + Integer.toString(this.cliente.getNumPontos()));
    }
 
    /**
@@ -23,22 +25,14 @@ public class MenuCliente extends javax.swing.JPanel {
    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
    private void initComponents() {
 
-      jPontosCliente = new javax.swing.JLabel();
       jLabel1 = new javax.swing.JLabel();
       jCliente = new javax.swing.JLabel();
       BtnListRecintos = new javax.swing.JButton();
       BtnPesquisarRecinto = new javax.swing.JButton();
-      jLabel3 = new javax.swing.JLabel();
-      jLabel6 = new javax.swing.JLabel();
+      jPontosCliente = new javax.swing.JLabel();
       jLabel4 = new javax.swing.JLabel();
 
       setLayout(null);
-
-      jPontosCliente.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-      jPontosCliente.setForeground(new java.awt.Color(0, 0, 0));
-      jPontosCliente.setText("1000");
-      add(jPontosCliente);
-      jPontosCliente.setBounds(265, 340, 70, 43);
 
       jLabel1.setFont(new java.awt.Font("Arial", 1, 22)); // NOI18N
       jLabel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -48,9 +42,10 @@ public class MenuCliente extends javax.swing.JPanel {
 
       jCliente.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
       jCliente.setForeground(new java.awt.Color(0, 0, 0));
-      jCliente.setText("cliente");
+      jCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+      jCliente.setText("Bem Vindo cliente.");
       add(jCliente);
-      jCliente.setBounds(440, 240, 130, 43);
+      jCliente.setBounds(0, 310, 800, 50);
 
       BtnListRecintos.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
       BtnListRecintos.setText("Consultar Reservas");
@@ -72,17 +67,11 @@ public class MenuCliente extends javax.swing.JPanel {
       add(BtnPesquisarRecinto);
       BtnPesquisarRecinto.setBounds(190, 470, 200, 35);
 
-      jLabel3.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
-      jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-      jLabel3.setText("Bem vindo");
-      add(jLabel3);
-      jLabel3.setBounds(250, 240, 190, 43);
-
-      jLabel6.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-      jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-      jLabel6.setText("Possui");
-      add(jLabel6);
-      jLabel6.setBounds(180, 340, 80, 43);
+      jPontosCliente.setFont(new java.awt.Font("Dialog", 1, 26)); // NOI18N
+      jPontosCliente.setForeground(new java.awt.Color(0, 0, 0));
+      jPontosCliente.setText("Pontos do cliente: xxxx");
+      add(jPontosCliente);
+      jPontosCliente.setBounds(10, 550, 490, 34);
 
       jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/campo-desportivo.png"))); // NOI18N
       jLabel4.setToolTipText("");
@@ -104,9 +93,7 @@ public class MenuCliente extends javax.swing.JPanel {
    private javax.swing.JButton BtnPesquisarRecinto;
    private javax.swing.JLabel jCliente;
    private javax.swing.JLabel jLabel1;
-   private javax.swing.JLabel jLabel3;
    private javax.swing.JLabel jLabel4;
-   private javax.swing.JLabel jLabel6;
    private javax.swing.JLabel jPontosCliente;
    // End of variables declaration//GEN-END:variables
 }

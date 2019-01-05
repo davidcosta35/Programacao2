@@ -1,7 +1,6 @@
 package GUI;
 
 import Classes.Cliente;
-import Classes.Dono;
 import Classes.Ficheiro;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
@@ -126,7 +125,7 @@ public class LoginCliente extends javax.swing.JFrame implements Runnable {
 
    private void BtnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLoginActionPerformed
       Cliente c = new Cliente();
-      if (Ficheiro.getRepo().getDonos().containsKey(this.jUsername.getText())) {
+      if (Ficheiro.getRepo().getClientes().containsKey(this.jUsername.getText())) {
          c = Ficheiro.getRepo().getClientes().get(this.jUsername.getText());
          if (c.getSenha().equals(new String(this.jPassword.getPassword()))) {
             this.cliente = c;
