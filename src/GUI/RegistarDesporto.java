@@ -15,6 +15,7 @@ public class RegistarDesporto extends javax.swing.JPanel {
         this.parentFrame = parentFrame;
         this.admin = admin;
         this.jLabelNome.setVisible(false);
+        this.BtnConcluir.setEnabled(true);
     }
 
     @SuppressWarnings("unchecked")
