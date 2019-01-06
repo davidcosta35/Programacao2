@@ -6,7 +6,6 @@ import java.util.List;
 
 public class Recinto implements Serializable {
     
-    private List<Empresa> empresa;
     private List<Desporto> desportos;
     private List<Servicos> servicos;
     private List<Horario> horarios;
@@ -22,14 +21,6 @@ public class Recinto implements Serializable {
         this.servicos = new ArrayList<>();
         this.horarios = new ArrayList<>();
         this.reservas = new ArrayList<>();
-    }
-
-    public List<Empresa> getEmpresa() {
-        return empresa;
-    }
-
-    public void setEmpresa(List<Empresa> empresa) {
-        this.empresa = empresa;
     }
 
     public List<Desporto> getDesportos() {

@@ -27,7 +27,7 @@ public class ConsultarRecinto extends javax.swing.JPanel {
 
       for (Map.Entry<String, Dono> mapa : Ficheiro.getRepo().getDonos().entrySet()) {
          for (Recinto r : mapa.getValue().getRecintos()) {
-            table.addRow(new Object[]{mapa.getValue().getNickname(), r.getNome(), r.getEmpresa(), r.getMorada(), r.getLocalidade(), r.isAtivo()});
+            table.addRow(new Object[]{mapa.getValue().getNickname(), r.getNome(), r.getMorada(), r.getLocalidade(), r.isAtivo()});
          }
       }
    }
@@ -44,7 +44,7 @@ public class ConsultarRecinto extends javax.swing.JPanel {
       DefaultTableModel table = (DefaultTableModel) this.jTable.getModel();
 
       for (Recinto r : this.dono.getRecintos()) {
-         table.addRow(new Object[]{this.dono.getNickname(), r.getNome(), r.getEmpresa(), r.getMorada(), r.getLocalidade(), r.isAtivo()});
+         table.addRow(new Object[]{this.dono.getNickname(), r.getNome(), r.getMorada(), r.getLocalidade(), r.isAtivo()});
       }
    }
 

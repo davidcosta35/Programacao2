@@ -20,9 +20,6 @@ public class ConsultarClientes extends javax.swing.JPanel {
           table.addRow(new Object[]{mapa.getValue().getNome(), mapa.getValue().getNumPontos()});  
         }
         
-        
-        
-        
     }
 
     @SuppressWarnings("unchecked")
