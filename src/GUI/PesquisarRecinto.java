@@ -16,6 +16,8 @@ public class PesquisarRecinto extends javax.swing.JPanel {
         initComponents();
         this.cliente = cliente;
         this.parentFrame = parentFrame;
+        this.BtnDesportos.setEnabled(false);
+        this.BtnServicos.setEnabled(false);
         DefaultTableModel table = (DefaultTableModel) this.jTable.getModel();
 
         for (Map.Entry<String, Dono> mapa : Ficheiro.getRepo().getDonos().entrySet()) {
@@ -33,9 +35,10 @@ public class PesquisarRecinto extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable = new javax.swing.JTable();
         BtnVoltar = new javax.swing.JButton();
-        BtnVoltar1 = new javax.swing.JButton();
+        BtnReservar = new javax.swing.JButton();
         BtnDesportos = new javax.swing.JButton();
         BtnServicos = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setLayout(null);
 
@@ -82,46 +85,71 @@ public class PesquisarRecinto extends javax.swing.JPanel {
         add(BtnVoltar);
         BtnVoltar.setBounds(600, 520, 175, 40);
 
-        BtnVoltar1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        BtnVoltar1.setText("Reservar");
-        BtnVoltar1.addActionListener(new java.awt.event.ActionListener() {
+        BtnReservar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        BtnReservar.setText("Reservar");
+        BtnReservar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnVoltar1ActionPerformed(evt);
+                BtnReservarActionPerformed(evt);
             }
         });
-        add(BtnVoltar1);
-        BtnVoltar1.setBounds(270, 520, 175, 40);
+        add(BtnReservar);
+        BtnReservar.setBounds(270, 520, 175, 40);
 
         BtnDesportos.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         BtnDesportos.setText("Consultar Desportos");
+        BtnDesportos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnDesportosActionPerformed(evt);
+            }
+        });
         add(BtnDesportos);
         BtnDesportos.setBounds(50, 340, 175, 40);
 
         BtnServicos.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         BtnServicos.setText("Consultar Serviços");
+        BtnServicos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnServicosActionPerformed(evt);
+            }
+        });
         add(BtnServicos);
         BtnServicos.setBounds(50, 390, 175, 40);
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/campo-desportivo.png"))); // NOI18N
+        jLabel3.setToolTipText("");
+        add(jLabel3);
+        jLabel3.setBounds(0, 0, 800, 600);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMouseClicked
-        
+        this.BtnDesportos.setEnabled(true);
+        this.BtnServicos.setEnabled(true);
     }//GEN-LAST:event_jTableMouseClicked
 
     private void BtnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVoltarActionPerformed
         this.parentFrame.trocaPainel(new MenuCliente(this.cliente, this.parentFrame));
     }//GEN-LAST:event_BtnVoltarActionPerformed
 
-    private void BtnVoltar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVoltar1ActionPerformed
+    private void BtnReservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnReservarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_BtnVoltar1ActionPerformed
+    }//GEN-LAST:event_BtnReservarActionPerformed
+
+    private void BtnDesportosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDesportosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnDesportosActionPerformed
+
+    private void BtnServicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnServicosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnServicosActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnDesportos;
+    private javax.swing.JButton BtnReservar;
     private javax.swing.JButton BtnServicos;
     private javax.swing.JButton BtnVoltar;
-    private javax.swing.JButton BtnVoltar1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable;
     // End of variables declaration//GEN-END:variables

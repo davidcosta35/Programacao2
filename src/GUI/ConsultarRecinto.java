@@ -159,7 +159,7 @@ public class ConsultarRecinto extends javax.swing.JPanel {
    private void jTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMouseClicked
       boolean ativado = true;
       if (this.parentFrameDono != null) {
-         Recinto recinto = null;
+         Recinto recinto = new Recinto();
          String nome = (String) this.jTable.getValueAt(this.jTable.getSelectedRow(), 0);
          for (Recinto r : this.dono.getRecintos()) {
             if (r.getNome().equals(nome)) {
