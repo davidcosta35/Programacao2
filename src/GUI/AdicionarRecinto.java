@@ -11,9 +11,11 @@ public class AdicionarRecinto extends javax.swing.JPanel {
    private Dono dono;
    private LoginDono parentFrame;
    private Recinto recinto;
+   private boolean novoRecinto;
 
    public AdicionarRecinto(Dono dono, LoginDono parentFrame) {
       initComponents();
+      this.novoRecinto = true;
       this.jLabelRecinto.setVisible(false);
       this.dono = dono;
       this.parentFrame = parentFrame;
@@ -22,13 +24,13 @@ public class AdicionarRecinto extends javax.swing.JPanel {
       for (TipoRecinto t : TipoRecinto.values()) {
          switch (t) {
             case campoArLivre:
-               this.jTipoRecinto.addItem("Campo ao ar livre");
+               this.jTipoRecinto.addItem(TipoRecinto.campoArLivre.name());
                break;
             case ginasio:
-               this.jTipoRecinto.addItem("Ginásio");
+               this.jTipoRecinto.addItem(TipoRecinto.ginasio.name());
                break;
             case recintoCoberto:
-               this.jTipoRecinto.addItem("Recinto Coberto");
+               this.jTipoRecinto.addItem(TipoRecinto.recintoCoberto.name());
                break;
             default:
                break;
@@ -74,6 +76,11 @@ public class AdicionarRecinto extends javax.swing.JPanel {
       jLabel3.setBounds(150, 290, 160, 30);
 
       jNomeRecinto.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+      jNomeRecinto.addFocusListener(new java.awt.event.FocusAdapter() {
+         public void focusLost(java.awt.event.FocusEvent evt) {
+            jNomeRecintoFocusLost(evt);
+         }
+      });
       add(jNomeRecinto);
       jNomeRecinto.setBounds(310, 290, 225, 30);
 
@@ -126,6 +133,11 @@ public class AdicionarRecinto extends javax.swing.JPanel {
 
       BtnAdicionar.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
       BtnAdicionar.setText("Adicionar");
+      BtnAdicionar.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            BtnAdicionarActionPerformed(evt);
+         }
+      });
       add(BtnAdicionar);
       BtnAdicionar.setBounds(440, 500, 125, 35);
 
@@ -136,8 +148,57 @@ public class AdicionarRecinto extends javax.swing.JPanel {
    }// </editor-fold>//GEN-END:initComponents
 
    private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
-      
+      if (novoRecinto) {
+         this.parentFrame.trocaPainel(new MenuDono(this.dono, this.parentFrame));
+      } else {
+         this.parentFrame.trocaPainel(new ConsultarRecinto(this.parentFrame, this.dono));
+      }
    }//GEN-LAST:event_BtnCancelarActionPerformed
+
+   private void jNomeRecintoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jNomeRecintoFocusLost
+      boolean existe = false;
+      for (Dono d : Ficheiro.getRepo().getDonos().values()) {
+         for (Recinto r : d.getRecintos()) {
+            if (this.jNomeRecinto.getText().equals(r.getNome())) {
+               existe = true;
+               break;
+            }
+         }
+      }
+      if (existe) {
+         this.jLabelRecinto.setVisible(true);
+         this.BtnAdicionar.setEnabled(false);
+      } else {
+         this.jLabelRecinto.setVisible(false);
+         this.BtnAdicionar.setEnabled(true);
+      }
+   }//GEN-LAST:event_jNomeRecintoFocusLost
+
+   private void BtnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAdicionarActionPerformed
+      if (this.jTipoRecinto.getSelectedIndex() == 0) {
+         JOptionPane.showMessageDialog(null, "Tipo de Recinto inválido.\nSelecione uma das opções.", "Erro", JOptionPane.ERROR_MESSAGE);
+      } else {
+         this.recinto.setNome(this.jNomeRecinto.getText());
+         this.recinto.setLocalidade(this.jLocalidade.getText());
+         this.recinto.setMorada(this.jMorada.getText());
+         this.recinto.setTipoRecinto((TipoRecinto) this.jTipoRecinto.getSelectedItem());
+         if (novoRecinto) {
+            this.dono.getRecintos().add(this.recinto);
+            Ficheiro.getRepo().getRestauranteComida().put((String) this.jTipoComida.getSelectedItem(), this.restaurante);
+            Ficheiro.getRepo().getRestauranteLocal().put(this.jLocalidade.getText(), this.restaurante);
+            JOptionPane.showMessageDialog(null, "Registo de restaurante efetuado com sucesso!");
+            this.parentFrame.trocaPainel(new RegistarProduto(this.restaurante, this.dono, this.parentFrame));
+         } else {
+            Ficheiro.getRepo().getRestauranteComida().remove(this.restaurante.getTipoComida(), this.restaurante);
+            Ficheiro.getRepo().getRestauranteLocal().remove(this.restaurante.getLocalidade(), this.restaurante);
+            Ficheiro.getRepo().getRestauranteComida().put(this.restaurante.getTipoComida(), this.restaurante);
+            Ficheiro.getRepo().getRestauranteLocal().put(this.restaurante.getLocalidade(), this.restaurante);
+            JOptionPane.showMessageDialog(null, "Alterações efetuadas com êxito!");
+            this.parentFrame.trocaPainel(new ConsultarRestaurante(this.parentFrame, this.dono));
+         }
+         Ficheiro.serializar("Ficheiro");
+      }
+   }//GEN-LAST:event_BtnAdicionarActionPerformed
 
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
