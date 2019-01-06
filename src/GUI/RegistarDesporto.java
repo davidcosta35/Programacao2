@@ -91,7 +91,7 @@ public class RegistarDesporto extends javax.swing.JPanel {
     private void BtnConcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnConcluirActionPerformed
         this.novoDesporto = new Desporto();
         this.novoDesporto.setNome(this.jNome.getText());
-        JOptionPane.showMessageDialog(null, "Registo efetuado com sucesso!");
+        JOptionPane.showMessageDialog(null, "Desporto registado com sucesso!");
         Ficheiro.getRepo().getDesportos().put(this.novoDesporto.getNome(), (Desporto) novoDesporto);
         Ficheiro.serializar("Ficheiro");
         this.parentFrame.trocaPainel(new ConsultarDesporto(this.parentFrame, this.admin));

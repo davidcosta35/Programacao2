@@ -12,6 +12,7 @@ public class Repositorio implements Serializable {
     private Map<String, String> admins;
     private Map<String, Reserva> reservas;
     private Map<String, Desporto> desportos;
+    private Map<String, Servicos> servicos;
 
     public Repositorio() {
         this.recintoLocalidade = new HashMap<>();
@@ -21,6 +22,7 @@ public class Repositorio implements Serializable {
         this.admins = new HashMap<>();
         this.reservas = new HashMap<>();
         this.desportos = new HashMap<>();
+        this.servicos = new HashMap<>();
     }
 
     public Map<String, Recinto> getRecintoLocalidade() {
@@ -50,6 +52,10 @@ public class Repositorio implements Serializable {
     public Map<String, Desporto> getDesportos() {
         return desportos;
     }
+
+   public Map<String, Servicos> getServicos() {
+      return servicos;
+   }
     
     
     

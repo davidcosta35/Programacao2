@@ -24,13 +24,13 @@ public class AdicionarRecinto extends javax.swing.JPanel {
       for (TipoRecinto t : TipoRecinto.values()) {
          switch (t) {
             case campoArLivre:
-               this.jTipoRecinto.addItem(TipoRecinto.campoArLivre.name());
+               this.jTipoRecinto.addItem("campoArLivre");
                break;
             case ginasio:
-               this.jTipoRecinto.addItem(TipoRecinto.ginasio.name());
+               this.jTipoRecinto.addItem("ginasio");
                break;
             case recintoCoberto:
-               this.jTipoRecinto.addItem(TipoRecinto.recintoCoberto.name());
+               this.jTipoRecinto.addItem("recintoCoberto");
                break;
             default:
                break;
@@ -129,7 +129,7 @@ public class AdicionarRecinto extends javax.swing.JPanel {
          }
       });
       add(BtnCancelar);
-      BtnCancelar.setBounds(280, 500, 125, 35);
+      BtnCancelar.setBounds(280, 470, 125, 35);
 
       BtnAdicionar.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
       BtnAdicionar.setText("Adicionar");
@@ -139,7 +139,7 @@ public class AdicionarRecinto extends javax.swing.JPanel {
          }
       });
       add(BtnAdicionar);
-      BtnAdicionar.setBounds(440, 500, 125, 35);
+      BtnAdicionar.setBounds(440, 470, 125, 35);
 
       jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/campo-desportivo.png"))); // NOI18N
       jLabel6.setToolTipText("");
@@ -178,23 +178,21 @@ public class AdicionarRecinto extends javax.swing.JPanel {
       if (this.jTipoRecinto.getSelectedIndex() == 0) {
          JOptionPane.showMessageDialog(null, "Tipo de Recinto inválido.\nSelecione uma das opções.", "Erro", JOptionPane.ERROR_MESSAGE);
       } else {
+         String tipo = String.valueOf(this.jTipoRecinto.getSelectedItem());
          this.recinto.setNome(this.jNomeRecinto.getText());
          this.recinto.setLocalidade(this.jLocalidade.getText());
          this.recinto.setMorada(this.jMorada.getText());
-         this.recinto.setTipoRecinto((TipoRecinto) this.jTipoRecinto.getSelectedItem());
+         this.recinto.setTipoRecinto(TipoRecinto.valueOf(tipo));
          if (novoRecinto) {
             this.dono.getRecintos().add(this.recinto);
-            Ficheiro.getRepo().getRestauranteComida().put((String) this.jTipoComida.getSelectedItem(), this.restaurante);
-            Ficheiro.getRepo().getRestauranteLocal().put(this.jLocalidade.getText(), this.restaurante);
-            JOptionPane.showMessageDialog(null, "Registo de restaurante efetuado com sucesso!");
-            this.parentFrame.trocaPainel(new RegistarProduto(this.restaurante, this.dono, this.parentFrame));
+            Ficheiro.getRepo().getRecintoLocalidade().put(this.jLocalidade.getText(), this.recinto);
+            JOptionPane.showMessageDialog(null, "Recinto registado com sucesso.");
+            this.parentFrame.trocaPainel(new ConsultarDesporto(this.recinto, this.dono, this.parentFrame));
          } else {
-            Ficheiro.getRepo().getRestauranteComida().remove(this.restaurante.getTipoComida(), this.restaurante);
-            Ficheiro.getRepo().getRestauranteLocal().remove(this.restaurante.getLocalidade(), this.restaurante);
-            Ficheiro.getRepo().getRestauranteComida().put(this.restaurante.getTipoComida(), this.restaurante);
-            Ficheiro.getRepo().getRestauranteLocal().put(this.restaurante.getLocalidade(), this.restaurante);
-            JOptionPane.showMessageDialog(null, "Alterações efetuadas com êxito!");
-            this.parentFrame.trocaPainel(new ConsultarRestaurante(this.parentFrame, this.dono));
+            Ficheiro.getRepo().getRecintoLocalidade().remove(this.recinto.getLocalidade(), this.recinto);
+            Ficheiro.getRepo().getRecintoLocalidade().put(this.recinto.getLocalidade(), this.recinto);
+            JOptionPane.showMessageDialog(null, "Alterações efetuadas com sucesso.");
+            this.parentFrame.trocaPainel(new ConsultarRecinto(this.parentFrame, this.dono));
          }
          Ficheiro.serializar("Ficheiro");
       }
