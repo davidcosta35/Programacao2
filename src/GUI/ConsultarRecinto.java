@@ -21,8 +21,8 @@ public class ConsultarRecinto extends javax.swing.JPanel {
       this.BtnEditarRecinto.setEnabled(false);
       this.BtnReservas.setEnabled(false);
       this.BtnHorarios.setEnabled(false);
-      this.BtnDesportos.setVisible(false);
-      this.BtnServicos.setVisible(false);
+      this.BtnDesportos.setEnabled(false);
+      this.BtnServicos.setEnabled(false);
       DefaultTableModel table = (DefaultTableModel) this.jTable.getModel();
 
       for (Map.Entry<String, Dono> mapa : Ficheiro.getRepo().getDonos().entrySet()) {
@@ -39,8 +39,8 @@ public class ConsultarRecinto extends javax.swing.JPanel {
       this.BtnEditarRecinto.setEnabled(false);
       this.BtnReservas.setEnabled(false);
       this.BtnHorarios.setEnabled(false);
-      this.BtnDesportos.setVisible(false);
-      this.BtnServicos.setVisible(false);
+      this.BtnDesportos.setEnabled(false);
+      this.BtnServicos.setEnabled(false);
       DefaultTableModel table = (DefaultTableModel) this.jTable.getModel();
 
       for (Recinto r : this.dono.getRecintos()) {
@@ -78,6 +78,11 @@ public class ConsultarRecinto extends javax.swing.JPanel {
 
       BtnEditarRecinto.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
       BtnEditarRecinto.setText("Editar Recinto");
+      BtnEditarRecinto.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            BtnEditarRecintoActionPerformed(evt);
+         }
+      });
       add(BtnEditarRecinto);
       BtnEditarRecinto.setBounds(40, 260, 175, 40);
 
@@ -156,23 +161,22 @@ public class ConsultarRecinto extends javax.swing.JPanel {
       if (this.parentFrameDono != null) {
          Recinto recinto = null;
          String nome = (String) this.jTable.getValueAt(this.jTable.getSelectedRow(), 0);
-         
          for (Recinto r : this.dono.getRecintos()) {
             if (r.getNome().equals(nome)) {
                recinto = r;
             }
          }
-         if (!recinto.isAtivo()) {
-            ativado = false;
-            this.jTable.clearSelection();
+         if (recinto.isAtivo()) {
+            this.BtnEditarRecinto.setEnabled(true);
+            this.BtnReservas.setEnabled(true);
+            this.BtnHorarios.setEnabled(true);
+            this.BtnDesportos.setEnabled(true);
+            this.BtnServicos.setEnabled(true);
          }
       }
-      if (ativado) {
-         this.BtnEditarRecinto.setEnabled(true);
-         this.BtnReservas.setEnabled(true);
-         this.BtnHorarios.setEnabled(true);
-         this.BtnDesportos.setVisible(true);
-         this.BtnServicos.setVisible(true);
+      if (!ativado) {
+         ativado = false;
+         this.jTable.clearSelection();
       }
    }//GEN-LAST:event_jTableMouseClicked
 
@@ -183,6 +187,10 @@ public class ConsultarRecinto extends javax.swing.JPanel {
          this.parentFrameDono.trocaPainel(new MenuDono(this.dono, this.parentFrameDono));
       }
    }//GEN-LAST:event_BtnVoltarActionPerformed
+
+   private void BtnEditarRecintoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditarRecintoActionPerformed
+      
+   }//GEN-LAST:event_BtnEditarRecintoActionPerformed
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
    private javax.swing.JButton BtnDesportos;
