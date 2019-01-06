@@ -104,7 +104,7 @@ public class ConsultarClientes extends javax.swing.JPanel {
                 c.setNumPontos(c.getNumPontos() - 1000);
                 JOptionPane.showMessageDialog(null, "Vale emitido com sucesso!");
             } else {
-                JOptionPane.showMessageDialog(null, "O cliente não possui pontos o suficiente!");
+                JOptionPane.showMessageDialog(null, "O cliente não possui pontos o suficiente!", "Erro", JOptionPane.ERROR_MESSAGE);
             }
             //c.setNumVale(c.getNumVale() + 1);
             Ficheiro.serializar("Ficheiro");

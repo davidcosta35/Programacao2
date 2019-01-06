@@ -136,7 +136,7 @@ public class ConsultarDesporto extends javax.swing.JPanel {
 
           for (Desporto des : this.recinto.getDesportos()) {
              if (des.getNome().equals(nomeD)) {
-                JOptionPane.showMessageDialog(null, "Esse desporto já está incluido na lista de desportos do Recinto.");
+                JOptionPane.showMessageDialog(null, "Esse desporto já está incluido na lista de desportos do Recinto.", "Erro", JOptionPane.ERROR_MESSAGE);
              } else {
                 d = des;
                 this.recinto.getDesportos().add(d);
