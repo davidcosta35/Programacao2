@@ -81,7 +81,7 @@ public class MenuDono extends javax.swing.JPanel {
    }//GEN-LAST:event_BtnAddRecintoActionPerformed
 
    private void BtnListRecintosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnListRecintosActionPerformed
-      this.parentFrame.trocaPainel(new ConsultarRecinto(this.dono, this.parentFrame));
+      this.parentFrame.trocaPainel(new ConsultarRecinto(this.parentFrame, this.dono));
    }//GEN-LAST:event_BtnListRecintosActionPerformed
 
 
