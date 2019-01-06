@@ -183,6 +183,7 @@ public class AdicionarRecinto extends javax.swing.JPanel {
          this.recinto.setLocalidade(this.jLocalidade.getText());
          this.recinto.setMorada(this.jMorada.getText());
          this.recinto.setTipoRecinto(TipoRecinto.valueOf(tipo));
+         this.recinto.setAtivo(true);
          if (novoRecinto) {
             this.dono.getRecintos().add(this.recinto);
             Ficheiro.getRepo().getRecintoLocalidade().put(this.jLocalidade.getText(), this.recinto);
