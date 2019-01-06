@@ -19,6 +19,10 @@ public class ConsultarClientes extends javax.swing.JPanel {
         for (Map.Entry<String, Cliente> mapa : Ficheiro.getRepo().getClientes().entrySet()) {
           table.addRow(new Object[]{mapa.getValue().getNome(), mapa.getValue().getNumPontos()});  
         }
+        
+        
+        
+        
     }
 
     @SuppressWarnings("unchecked")
