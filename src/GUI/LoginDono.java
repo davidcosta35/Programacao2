@@ -166,6 +166,8 @@ public class LoginDono extends javax.swing.JFrame implements Runnable {
             this.dono = d;
             JOptionPane.showMessageDialog(null, "Autenticado com sucesso!");
             this.trocaPainel(new MenuDono(this.dono, this));
+            System.out.println("Login como Dono efetuado com sucesso.");
+            this.jMenuBar.setVisible(true);
          } else {
             JOptionPane.showMessageDialog(null, "Senha Incorreta!", "Erro", JOptionPane.ERROR_MESSAGE);
          }

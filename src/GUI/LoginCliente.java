@@ -131,6 +131,8 @@ public class LoginCliente extends javax.swing.JFrame implements Runnable {
             this.cliente = c;
             JOptionPane.showMessageDialog(null, "Autenticado com sucesso!");
             this.trocaPainel(new MenuCliente(this.cliente, this));
+            System.out.println("Login como Cliente efetuado com sucesso.");
+            this.jMenuBar.setVisible(true);
          } else {
             JOptionPane.showMessageDialog(null, "Senha Incorreta!", "Erro", JOptionPane.ERROR_MESSAGE);
          }
