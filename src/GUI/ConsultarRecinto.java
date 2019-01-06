@@ -32,6 +32,22 @@ public class ConsultarRecinto extends javax.swing.JPanel {
       }
    }
 
+   public ConsultarRecinto(LoginDono parentFrame, Dono dono) {
+      initComponents();
+      this.dono = dono;
+      this.parentFrameDono = parentFrame;
+      this.BtnEditarRecinto.setEnabled(false);
+      this.BtnReservas.setEnabled(false);
+      this.BtnHorarios.setEnabled(false);
+      this.BtnDesportos.setVisible(false);
+      this.BtnServicos.setVisible(false);
+      DefaultTableModel table = (DefaultTableModel) this.jTable.getModel();
+
+      for (Recinto r : this.dono.getRecintos()) {
+         table.addRow(new Object[]{this.dono.getNickname(), r.getNome(), r.getEmpresa(), r.getMorada(), r.getLocalidade(), r.isAtivo()});
+      }
+   }
+
    /**
     * This method is called from within the constructor to initialize the form.
     * WARNING: Do NOT modify this code. The content of this method is always
@@ -88,7 +104,7 @@ public class ConsultarRecinto extends javax.swing.JPanel {
          }
       });
       add(BtnVoltar);
-      BtnVoltar.setBounds(600, 520, 175, 40);
+      BtnVoltar.setBounds(595, 520, 175, 40);
 
       BtnServicos.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
       BtnServicos.setText("Consultar Serviços");
@@ -161,10 +177,10 @@ public class ConsultarRecinto extends javax.swing.JPanel {
 
    private void BtnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVoltarActionPerformed
       if (this.parentFrameAdmin != null) {
-            this.parentFrameAdmin.trocaPainel(new MenuAdmin(this.admin, this.parentFrameAdmin));
-        } else {
-            this.parentFrameDono.trocaPainel(new MenuDono(this.dono, this.parentFrameDono));
-        }
+         this.parentFrameAdmin.trocaPainel(new MenuAdmin(this.admin, this.parentFrameAdmin));
+      } else {
+         this.parentFrameDono.trocaPainel(new MenuDono(this.dono, this.parentFrameDono));
+      }
    }//GEN-LAST:event_BtnVoltarActionPerformed
 
    // Variables declaration - do not modify//GEN-BEGIN:variables

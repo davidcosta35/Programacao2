@@ -11,21 +11,28 @@ public class AdicionarRecinto extends javax.swing.JPanel {
    private Dono dono;
    private LoginDono parentFrame;
    private Recinto recinto;
-   
+
    public AdicionarRecinto(Dono dono, LoginDono parentFrame) {
       initComponents();
       this.jLabelRecinto.setVisible(false);
       this.dono = dono;
       this.parentFrame = parentFrame;
       this.recinto = new Recinto();
-      
+
       for (TipoRecinto t : TipoRecinto.values()) {
-         if(t.equals(TipoRecinto.campoArLivre))
-            this.jTipoRecinto.addItem("Campo ao ar livre");
-         else if (t.equals(TipoRecinto.ginasio))
-            this.jTipoRecinto.addItem("Ginásio");
-         else if (t.equals(TipoRecinto.recintoCoberto))
-            this.jTipoRecinto.addItem("Recinto Coberto");
+         switch (t) {
+            case campoArLivre:
+               this.jTipoRecinto.addItem("Campo ao ar livre");
+               break;
+            case ginasio:
+               this.jTipoRecinto.addItem("Ginásio");
+               break;
+            case recintoCoberto:
+               this.jTipoRecinto.addItem("Recinto Coberto");
+               break;
+            default:
+               break;
+         }
       }
    }
 
