@@ -3,6 +3,7 @@ package GUI;
 import Classes.Cliente;
 import Classes.Ficheiro;
 import java.util.Map;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class ConsultarClientes extends javax.swing.JPanel {
@@ -17,7 +18,7 @@ public class ConsultarClientes extends javax.swing.JPanel {
         DefaultTableModel table = (DefaultTableModel) this.jTable.getModel();
 
         for (Map.Entry<String, Cliente> mapa : Ficheiro.getRepo().getClientes().entrySet()) {
-          table.addRow(new Object[]{mapa.getValue().getNome(), mapa.getValue().getNumPontos()});  
+          table.addRow(new Object[]{mapa.getValue().getNome(), mapa.getValue().getNumPontos(), mapa.getValue().getNumVale()});  
         }
         
     }
@@ -40,7 +41,7 @@ public class ConsultarClientes extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Nome", "Numero de pontos"
+                "Nome", "Numero de pontos", "Numero de vales"
             }
         ));
         jTable.getTableHeader().setReorderingAllowed(false);
@@ -95,7 +96,20 @@ public class ConsultarClientes extends javax.swing.JPanel {
     }//GEN-LAST:event_BtnVoltarActionPerformed
 
     private void BtnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAdicionarActionPerformed
-        
+        if (this.jTable.getSelectedRowCount() == 1) {
+            String nomeC = (String) this.jTable.getValueAt(this.jTable.getSelectedRow(), 0);
+            Cliente c = Ficheiro.getRepo().getClientes().get(nomeC);
+            if(c.getNumPontos() >= 1000){
+                c.setNumVale(c.getNumVale() + 1);
+                c.setNumPontos(c.getNumPontos() - 1000);
+                JOptionPane.showMessageDialog(null, "Vale emitido com sucesso!");
+            } else {
+                JOptionPane.showMessageDialog(null, "O cliente não possui pontos o suficiente!");
+            }
+            //c.setNumVale(c.getNumVale() + 1);
+            Ficheiro.serializar("Ficheiro");
+            this.parentFrame.trocaPainel(new ConsultarClientes(this.parentFrame, this.admin));
+        }
     }//GEN-LAST:event_BtnAdicionarActionPerformed
 
 
